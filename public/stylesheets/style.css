@@ -1,0 +1,141 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #d1f3f5;
+  font: 14px "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/**
+ * HEADER.PUG
+ */ 
+
+ header #header-wrapper {
+  max-width: 60rem;
+  margin: auto;
+  padding: 0 10rem;
+  background: white;
+ }
+
+ #header-wrapper #header-content {
+   padding-top: 5rem;
+   padding-bottom: 3rem;
+ }
+
+ #header-content h1 {
+   margin: 0;
+   font-size: 3rem;
+   padding-bottom: .5rem;
+   font-weight: bold;
+   color: #333;
+ }
+
+ #header-content p {
+   margin: 0;
+   color: #737373;
+ }
+
+ #header-wrapper #header-nav {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: center;
+ }
+
+ #header-nav li {
+   flex-grow: 1;
+ }
+
+ #header-nav li a {
+  display: block;
+  color: #737373;
+  padding: 0.5rem 0; 
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 5px solid white;
+  outline: 0;
+}
+
+#header-nav li a:hover {
+  color: #333;
+  border-bottom: 5px solid #333;
+}
+
+#header-nav .active a {
+  color: #333;
+  border-bottom: 5px solid #333;
+}
+
+/**
+ * ITEMLIST.PUG
+ */
+
+ #items {
+  color: white;
+  flex-grow: 1;
+ }
+
+ #items #items-wrapper {
+  height: 100%;
+  max-width: 60rem;
+  padding: 0 10rem;
+  margin: auto;
+  background-color:#4ec7d2;
+ }
+
+ #items-wrapper #items-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 1.5rem 0 0 0;
+ }
+
+ #items-list li {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+ }
+
+ #items-list .item-title {
+   display: flex;
+   align-items: center;
+   padding: 1rem;
+ }
+
+ .item-title:hover {
+  cursor: pointer;
+}
+
+ .item-title .fa {
+   font-size: 1.2rem;
+   width: 2rem;
+ }
+
+ .item-title .fa-ellipsis-v {
+  width: unset;
+  padding: 0 1rem;
+}
+
+.item-title .fa-ellipsis-v:hover {
+  cursor: pointer;
+}
+
+ .item-title h1 {
+   margin: 0;
+   font-size: 1.5rem;
+   display: inline;
+   flex-grow: 1;
+ }
+
+ #items-list li p {
+  margin: 0 0 0 2rem;
+}
