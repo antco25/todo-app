@@ -1,12 +1,23 @@
+-
+  var navlink = [
+          {"title": "To Do", "category": "todo"},
+          {"title": "In Progress", "category": "progress"},
+          {"title": "Completed", "category": "completed"},
+          {"title": "All", "category": "all"}
+        ]
+
+
 header
     div#header-wrapper
         div#header-content
           h1 My ToDo List.
           p Thursday, 22 Oct 2020
-          button Add item
-    
+          form(action="/addItem" method="post")
+            input(type="submit" value="Add item")
+
         ul#header-nav
-            li(class='active'): a(href='#') To Do
-            li: a(href='#') In Progress
-            li: a(href='#') Completed
-            li: a(href='#') All
+            each val in navlink
+              if val.category === category
+                li(class='active'): a(href='/' + val.category)= val.title
+              else
+                li: a(href='/' + val.category)= val.title

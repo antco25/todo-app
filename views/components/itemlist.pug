@@ -1,43 +1,20 @@
+mixin item(taskName, taskDesc)
+    li 
+        div(class='item-title')
+            div(class='item-title-wrapper' onclick="toggleDescription(this)")
+                div(class='item-icon-wrapper')
+                    i(class="fa fa-angle-right")
+                h1(unselectable="on")= taskName
+            i(class="fa fa-ellipsis-h" onclick="toggleDropdown(this)")
+                div(class="item-dropdown hidden")
+                    a(href="#1") To do
+                    a(href="#2") In&nbspProgress
+                    a(href="#3") Complete
+        div(class='item-desc hidden')
+            p= taskDesc
+
 div#items
     div#items-wrapper
         ul#items-list
-            li
-                div(class='item-title')
-                    div(class='item-title-wrapper' onclick="toggleDescription(this)")
-                        div(class='item-icon-wrapper')
-                            i(class="fa fa-angle-right")
-                        h1(unselectable="on") Task #1
-                    i(class="fa fa-ellipsis-h" onclick="toggleDropdown(this)")
-                        div(class="item-dropdown hidden")
-                            a(href="#1") To do
-                            a(href="#2") In&nbspProgress
-                            a(href="#3") Complete
-                div(class='item-desc hidden')
-                    p Task 1 description here
-
-            li 
-                div(class='item-title')
-                    div(class='item-title-wrapper' onclick="toggleDescription(this)")
-                        div(class='item-icon-wrapper')
-                            i(class="fa fa-angle-right")
-                        h1(unselectable="on") Task #2
-                    i(class="fa fa-ellipsis-h" onclick="toggleDropdown(this)")
-                        div(class="item-dropdown hidden")
-                            a(href="#1") To do
-                            a(href="#2") In&nbspProgress
-                            a(href="#3") Complete
-                div(class='item-desc hidden')
-                    p Task 2 description here
-            li 
-                div(class='item-title')
-                    div(class='item-title-wrapper' onclick="toggleDescription(this)")
-                        div(class='item-icon-wrapper')
-                            i(class="fa fa-angle-right")
-                        h1(unselectable="on") Task #3
-                    i(class="fa fa-ellipsis-h" onclick="toggleDropdown(this)")
-                        div(class="item-dropdown hidden")
-                            a(href="#1") To do
-                            a(href="#2") In&nbspProgress
-                            a(href="#3") Complete
-                div(class='item-desc hidden')
-                    p Task 3 description here
+            each val in tasks
+                +item(val.name, val.desc)
