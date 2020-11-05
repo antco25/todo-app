@@ -1,0 +1,44 @@
+mixin new-form()
+    div#itemForm
+        h1 Add a New Task
+        form(action="/addItem" method="post")
+            input(type='hidden' name="taskStatus" value=statusValue)
+            input(type='hidden' name="from" value=from)
+            +nameInput(nameValue, error)
+            +descInput(descValue, error)
+            div(class="itemForm-options")
+                input(type="submit" value="Add Task")
+                button(type="button" onclick="resetAddForm()") Reset
+
+mixin edit-form()
+    div#itemForm
+        h1 Edit Task
+        form(action="/updateItem" method="post")
+            input(type='hidden' name="taskId" value=idValue)
+            input(type='hidden' name="from" value=from)
+            +nameInput(nameValue, error)
+            +descInput(descValue, error)
+            div(class="itemForm-options")
+                input(type="submit" value="Update Task")
+                button(type="button" onclick="resetAddForm()") Reset
+
+mixin nameInput(value, error)
+    label(for="taskName") Task Name:
+    if (error && error.name)
+        input(type="text" id="taskName" name="taskName" maxlength="50" placeholder="Exercise" value=value class="input-error")
+    else
+        input(type="text" id="taskName" name="taskName" maxlength="50" placeholder="Exercise" value=value)
+
+mixin descInput(value, error)
+    label(for="taskDesc") Description:
+    if (error && error.desc)
+        textarea(id="taskDesc" name="taskDesc" maxlength="280" placeholder="Go for a run!" value=value class="input-error")=value
+    else
+        textarea(id="taskDesc" name="taskDesc" maxlength="280" placeholder="Go for a run!")=value
+
+if (isEdit)
+    +edit-form()
+else
+    +new-form()
+
+

@@ -20,3 +20,18 @@ function toggleDropdown(element) {
         dropdown.className += " hidden"
     }
 }
+
+function submitForm(el) {
+    let form = el.parentElement
+    form.submit()
+}
+
+function resetAddForm() {
+    let taskName = document.getElementById("taskName")
+    let taskDesc = document.getElementById("taskDesc")
+
+    taskName.value = ''
+    taskName.className = ''
+    taskDesc.value = ''
+    taskDesc.className = ''
+}

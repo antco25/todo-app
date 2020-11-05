@@ -11,9 +11,7 @@ header
     div#header-wrapper
         div#header-content
           h1 My ToDo List.
-          p Thursday, 22 Oct 2020
-          form(action="/addItem" method="post")
-            input(type="submit" value="Add item")
+          p=date
 
         ul#header-nav
             each val in navlink

@@ -1,0 +1,103 @@
+/**
+ * HEADER.PUG
+ */ 
+
+ header {
+    #header-wrapper {
+        max-width: 60rem;
+        margin: auto;
+        padding: 0 10rem;
+        background: white;
+       }
+
+    #header-content {
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            padding-bottom: .5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        p {
+            margin: 0;
+            color: #737373;
+        }
+    }
+            
+    #header-nav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+
+        li {
+            flex-grow: 1;
+
+            a {
+                display: block;
+                color: #737373;
+                padding: 0.5rem 0; 
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-weight: bold;
+                border-bottom: 5px solid white;
+                outline: 0;
+
+                &:hover {
+                    color: #333;
+                    border-bottom: 5px solid #333;
+                }
+            }
+        }
+
+        .active a {
+            color: #333;
+            border-bottom: 5px solid #333;
+        }
+    }
+ } 
+
+ /**
+ * MEDIA QUERIES
+ */
+
+ @media only screen and (max-width: 1700px) { 
+    header {
+        #header-wrapper {
+            max-width: 50rem;
+            padding: 0 10rem;
+        }
+    }
+ }
+ 
+ @media only screen and (max-width: 1500px) {
+    header {
+        #header-wrapper {
+            max-width: 50rem;
+            padding: 0 6rem;
+        }
+    }
+ }  
+ @media only screen and (max-width: 1100px) {
+    header {
+        #header-wrapper {
+            max-width: 40rem;
+            padding: 0 5rem;
+        }
+    }
+ }
+
+ @media only screen and (max-width: 800px) {
+    header {
+        #header-wrapper {
+            max-width: 100%;
+            padding: 0 2rem;
+        }
+    }
+ }

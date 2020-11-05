@@ -1,20 +1,69 @@
-mixin item(taskName, taskDesc)
+mixin item(taskName, taskDesc, taskStatus, taskId)
     li 
         div(class='item-title')
             div(class='item-title-wrapper' onclick="toggleDescription(this)")
                 div(class='item-icon-wrapper')
                     i(class="fa fa-angle-right")
-                h1(unselectable="on")= taskName
-            i(class="fa fa-ellipsis-h" onclick="toggleDropdown(this)")
-                div(class="item-dropdown hidden")
-                    a(href="#1") To do
-                    a(href="#2") In&nbspProgress
-                    a(href="#3") Complete
+                h1(unselectable="on")=taskName
+            +item-options(taskId, taskStatus)
         div(class='item-desc hidden')
-            p= taskDesc
+            p=taskDesc
+
+mixin item-options(taskId, taskStatus)
+    div(class='item-options-wrapper')
+        span(title="Delete")
+            form(action="/delete" method="post")
+                input(type='hidden' name="id" value=taskId)
+                i(class="fa fa-trash-o" onclick="submitForm(this)")
+        span(title="Edit")
+            form(action="/edit" method="post")
+                input(type='hidden' name="id" value=taskId)
+                i(class="fa fa-edit" onclick="submitForm(this)")
+        if taskStatus == 0
+            +options(1, taskId)
+            +options(2, taskId)
+        else if taskStatus == 1
+            +options(0, taskId)
+            +options(2, taskId)
+        else if taskStatus == 2
+            +options(0, taskId)
+            +options(1, taskId)
+
+mixin options(option, taskId)
+    if (option == 0)
+        span(title="Mark Todo")
+            form(action="/statusChange" method="post")
+                input(type='hidden' name="status" value=0)
+                input(type='hidden' name="id" value=taskId)
+                i(class="fa fa-list-ul" onclick="submitForm(this)")
+    else if (option == 1)
+        span(title="Mark In Progress")
+            form(action="/statusChange" method="post")
+                input(type='hidden' name="status" value=1)
+                input(type='hidden' name="id" value=taskId)
+                i(class="fa fa-clock-o" onclick="submitForm(this)")
+    else if (option == 2)
+        span(title="Mark Complete")
+            form(action="/statusChange" method="post")
+                input(type='hidden' name="status" value=2)
+                input(type='hidden' name="id" value=taskId)
+                i(class="fa fa-check-circle" onclick="submitForm(this)")
+
 
 div#items
     div#items-wrapper
-        ul#items-list
-            each val in tasks
-                +item(val.name, val.desc)
+        if (category != "all")
+            div(class='item-new')
+                form(action="/new" method="post")
+                    input(type='hidden' name="category" value=category)
+                    button
+                        i(class="fa fa-plus-circle") 
+                        h1 Add Item
+        if (isEmpty)
+            p(class="empty-message")=emptyMessage
+        else
+            ul#items-list
+                each val in tasks
+                    +item(val.name, val.desc, val.status, val.id)
+
+
